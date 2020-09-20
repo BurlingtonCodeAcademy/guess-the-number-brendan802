@@ -14,7 +14,15 @@ function ask(questionText) {
 
 async function start() {
     let maxValue
+    
     let rangeQuestion= await ask("Hi there, would you like to extend the number range?") 
+    var secretNumber=parseInt(randomInt)
+    function randomInt(min, max) {
+        let range = max - min + 1; 
+        return min + Math.floor(Math.random() * range);
+      }
+      
+
     if (rangeQuestion==='yes'||'yea') {
         rangeQuestion=await ask ('What range would you like to set?')
      
@@ -22,7 +30,6 @@ async function start() {
 
 
     var extendedRange=parseInt(rangeQuestion)
-    
     
     if ( extendedRange>1) {
         maxValue= extendedRange
@@ -40,42 +47,41 @@ async function start() {
     while (question === 'no') {
         question = await ask ("Ok then, will be here if you change your mind.")
     }
-    let guessCounter=0
-    var guessArray=[]
+    let firstCounter=0
+    var firstArray=[]
     while (question === 'yes' || question=== 'yea') {
-      
-        let guess= Math.floor((maxValue+minValue) / 2)
+        
+        
         {let first = await ask('What is your guess?')
-        guessArray.push(guess) 
-        if (guessArray===guess){
+        firstArray.push(first) 
+        if (firstArray===first){
             console.log('same guess')
         }
 
-        console.log('guessArray', guessArray)
+        
         
         console.log('Hmmm...' + first + " " + "you say.")
         
 
-        if (first === 'greater') {
+        if (first < secretNumber) {
             minValue = guess
-            console.log('minValue', minValue)
         }
     
             
-        else if (first === 'less than' || first=== 'less ') {
-            maxValue = guess
+        else if (first > secretNumber) {
+            maxValue = first
             console.log('maxValue', maxValue)
         
         }
         
-        guessCounter++
-        console.log('guessCounter', guessCounter)
-        if (guessCounter>=9) {
+        firstCounter++
+        
+        if (firstCounter>=7) {
             console.log("You've reached the max number of guesses.")
             process.exit()
         }
-        else if (first === 'equal to') {
-            response=await ask ("Huzahhhh! I am, and always will be, the best.")
+        else if (first === secretNumber) {
+            response=await ask ("You've won!")
             process.exit()
         }
         

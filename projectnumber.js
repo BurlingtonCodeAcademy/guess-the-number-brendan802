@@ -10,14 +10,14 @@ function ask(questionText) {
 async function start() {
     let maxValue
     let rangeQuestion= await ask("Would you like to extend the number range?") 
-    if (rangeQuestion==='yes'||'yea') {
+    if (rangeQuestion==='yes'||rangeQuestion==='yea') {
         rangeQuestion=await ask ('What range would you like to set?')
      
     }
 
 
     var extendedRange=parseInt(rangeQuestion)
-    console.log('extendedRange',extendedRange)
+    
     
     if ( extendedRange>1) {
         maxValue= extendedRange
@@ -28,7 +28,6 @@ async function start() {
         
     }
 
-    
     let minValue=1
     let question = await ask ("Let's play a game, are you thinking of a number between 1 -" + maxValue + '?')
     
@@ -38,8 +37,8 @@ async function start() {
     }
     let guessCounter=0
     var guessArray=[]
-    while (question === 'yes' || 'yea') {
-        
+    while (question === 'yes' || question=== 'yea') {
+      //check if valid range min=max=cheat  
         let guess= Math.floor((maxValue+minValue) / 2)
         {let first = await ask('Is your number greater, less than , or equal to' + ' ' + guess + '? ')
         
@@ -48,31 +47,31 @@ async function start() {
             console.log('same guess')
         }
 
-        console.log('guessArray', guessArray)
+        
         
         console.log('Hmmm...' + first + " " + "you say.")
         
 
         if (first === 'greater') {
             minValue = guess
-            console.log('minValue', minValue)
+            
         }
     
             
-        else if (first === 'less than' || 'less ') {
+        else if (first === 'less than' || first=== 'less ') {
             maxValue = guess
-            console.log('maxValue', maxValue)
+            
         
         }
         
         guessCounter++
-        console.log('guessCounter', guessCounter)
+        
         if (guessCounter>=9) {
             console.log("You've reached the max number of guesses.")
             process.exit()
         }
         else if (first === 'equal to') {
-            response=await ask ("Huzahhhh! I am, and always will be, the best.")
+            response=await ask ("Thanks for playing!")
             process.exit()
         }
         

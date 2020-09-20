@@ -29,11 +29,6 @@ async function start() {
     }
 
     
-    
-    
-    
-    
-    
     let minValue=1
     let question = await ask ("Let's play a game, are you thinking of a number between 1 -" + maxValue + '?')
     
@@ -48,7 +43,11 @@ async function start() {
         let guess= Math.floor((maxValue+minValue) / 2)
         {let first = await ask('Is your number greater, less than , or equal to' + ' ' + guess + '? ')
         
-        guessArray.push(guess)
+        guessArray.push(guess) 
+        if (guessArray===guess){
+            console.log('same guess')
+        }
+
         console.log('guessArray', guessArray)
         
         console.log('Hmmm...' + first + " " + "you say.")
@@ -68,7 +67,7 @@ async function start() {
         
         guessCounter++
         console.log('guessCounter', guessCounter)
-        if (guessCounter>=7) {
+        if (guessCounter>=9) {
             console.log("You've reached the max number of guesses.")
             process.exit()
         }

@@ -13,65 +13,78 @@ function ask(questionText) {
 }
 
 async function start() {
+    let maxValue
+    let rangeQuestion= await ask("Hi there, would you like to extend the number range?") 
+    if (rangeQuestion==='yes'||'yea') {
+        rangeQuestion=await ask ('What range would you like to set?')
+     
+    }
 
-    let maxValue = 100
-    let randomInteger=randomInteger
-    let minValue = 1
 
-randomInteger(minValue, maxValue)
-    let range = max - min + 1;
-    return min + Math.floor(Math.random() * range)
-}
-    {
-    let question = await ask("Let's play a game, would you like to guess my secret number between 1 and 100?")
-    console.log(question)
+    var extendedRange=parseInt(rangeQuestion)
     
-    {
-while (question === 'no') {
-    question = await ask('Okay, another time then.')
-    }}  
-
-Math.floor(guess)
-let guessCounter = 0
-var guessArray = []
-while (question === 'yes' || question === 'yea')
-
-{
-    //check if valid range min=max=cheat  
-
     
-        let first = await ask('What is your guess?') 
+    if ( extendedRange>1) {
+        maxValue= extendedRange
+    }
+    
+    else {
+        maxValue=100
         
-        guessArray.push(first)
-        if (guessArray === first) {
+    }
+
+    let minValue=1
+    let question = await ask ("Let's play a game, where I think of a number between 1 and" +" " + maxValue + ", you try to guess, want to play?")
+    
+    
+    while (question === 'no') {
+        question = await ask ("Ok then, will be here if you change your mind.")
+    }
+    let guessCounter=0
+    var guessArray=[]
+    while (question === 'yes' || question=== 'yea') {
+      
+        let guess= Math.floor((maxValue+minValue) / 2)
+        {let first = await ask('What is your guess?')
+        guessArray.push(guess) 
+        if (guessArray===guess){
             console.log('same guess')
         }
 
         console.log('guessArray', guessArray)
-
+        
         console.log('Hmmm...' + first + " " + "you say.")
+        
 
-
-        if (first < randomInteger) {
-            console.log("Higher")
+        if (first === 'greater') {
+            minValue = guess
+            console.log('minValue', minValue)
         }
-
-
-        else if (first > randomInteger) {
-            console.log('Lower')
-
+    
+            
+        else if (first === 'less than' || first=== 'less ') {
+            maxValue = guess
+            console.log('maxValue', maxValue)
+        
         }
+        
         guessCounter++
         console.log('guessCounter', guessCounter)
-        if (guessCounter >= 7) {
+        if (guessCounter>=9) {
             console.log("You've reached the max number of guesses.")
             process.exit()
         }
-        else if (first === numberValue) {
-            response = await ask("You have won!")
+        else if (first === 'equal to') {
+            response=await ask ("Huzahhhh! I am, and always will be, the best.")
             process.exit()
         }
-    }
+        
+   
 
+        }
+           
+        }
+        
+        }
 
-start()}
+start()

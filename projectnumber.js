@@ -48,7 +48,7 @@ async function start() {
         
         if (first === 'greater') {
             minValue = guess
-            console.log('minValue', minValue)
+            
         }
        
         else if (first === 'less than' || first=== 'less ') {

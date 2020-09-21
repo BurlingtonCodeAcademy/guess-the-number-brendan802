@@ -32,49 +32,52 @@ async function start() {
     }
     
     else {
-        maxValue=100
-        
+        maxValue=100  
     }
 
     let minValue=1
     let question = await ask ("Let's play a game, where I think of a number between 1 and" +" " + maxValue + ", you try to guess, want to play?")
-    while (question === 'no') {
+       
+        while (question === 'no') {
         question = await ask ("Ok then, will be here if you change your mind.")
-    }
+        }
+    
     let firstCounter=0
     var firstArray=[]
     if (question === 'yes' || question=== 'yea') {
           
         let first = await ask('What is your guess?')
-        if (first < secretNumber) {
+            if (first < secretNumber) {
             minValue = guess
-        }
+            }
             
         else if (first > secretNumber) {
             maxValue = first
             console.log('maxValue', maxValue)
-        }
+            }
         
         
         firstArray.push(first) 
-        if (firstArray===first){
+        
+            if (firstArray===first)
             console.log('same guess')
         
         console.log('Hmmm...' + first + " " + "you say.")
         
         
         firstCounter++
-        if (firstCounter>=7) {
+            if (firstCounter>=7) {
             console.log("You've reached the max number of guesses.")
             process.exit()
-        }
-        else if (first === secretNumber) {
+             }
+            
+             else if (first === secretNumber) {
             response=await ask ("You've won!")
             process.exit()
-        }
+            }
         }    
         }
-        }
+        
 
 start()
 //process exit on the no dont want to play

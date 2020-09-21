@@ -13,15 +13,18 @@ function ask(questionText) {
 }
 async function start() {
     
-    let maxValue
+    
+    
     let rangeQuestion= await ask("Hi there, would you like to extend the number range?") 
-    var secretNumber=parseInt(randomInt)
+    
+    
     function randomInt(minValue, maxValue) {
-        let range = maxValue - minValue + 1; 
-        return minValue + Math.floor(Math.random() * range);
+        let extendedRange = maxValue - minValue + 1; 
+        return minValue + Math.floor(Math.random() * extendedRange);
       }
-      
-    if (rangeQuestion==='yes'||'yea') {
+      var secretNumber=parseInt(randomInt)
+    
+      if (rangeQuestion==='yes'||'yea') {
         rangeQuestion=await ask ('What range would you like to set?')
      
     }
@@ -53,16 +56,15 @@ async function start() {
             
         else if (first > secretNumber) {
             maxValue = first
-            console.log('maxValue', maxValue)
+            
             }
         
-        
-        firstArray.push(first) 
+            firstArray.push(first) 
         
             if (firstArray===first)
             console.log('same guess')
         
-        console.log('Hmmm...' + first + " " + "you say.")
+    console.log('Hmmm...' + first + " " + "you say.")
         
         
         firstCounter++

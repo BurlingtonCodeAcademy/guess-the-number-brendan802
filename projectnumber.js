@@ -68,7 +68,7 @@ let question = await ask(`Let's play a game, are you thinking of a number betwee
             }//guess counter, player wins if computer has to guess x number of times
             if (guessCounter >= 9) {
                 console.log("It can't be! I've reached the maximum number of guesses, you have won.")
-                process.exit()
+                process.exit();
             }
             //cheat detector logic, if player does not admit when computer has guessed their number
             else if ( secretNumber == guess ){

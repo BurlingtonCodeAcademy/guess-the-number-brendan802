@@ -12,74 +12,63 @@ function ask(questionText) {
     });
 }
 async function start() {
-    
-    
-    
-    let rangeQuestion= await ask("Hi there, would you like to extend the number range?") 
-    
-    
+    //intro and extended range question
+
+    let rangeQuestion = await ask("Hi there, would you like to extend the number range?")
+    let secretNumber = parseInt(randomInt)
     function randomInt(minValue, maxValue) {
-        let extendedRange = maxValue - minValue + 1; 
-        return minValue + Math.floor(Math.random() * extendedRange);
-      }
-      var secretNumber=parseInt(randomInt)
-    
-      if (rangeQuestion==='yes'||'yea') {
-        rangeQuestion=await ask ('What range would you like to set?')
-     
-    }
-    var extendedRange=parseInt(rangeQuestion)
-    
-    if ( extendedRange>1) {
-        maxValue= extendedRange
-    }
-    
-    else {
-        maxValue=100  
-    }
+        let extendedRange = maxValue - minValue + 1;
+        console.log(randomInt1) = (minValue + Math.floor(Math.random() * extendedRange)
+      
+      
+        if (rangeQuestion === 'yes' || 'yea')
+            rangeQuestion = await ask('What range would you like to set?')
+        let extendedRange = parseInt(rangeQuestion)
 
-    let minValue=1
-    let question = await ask ("Let's play a game, where I think of a number between 1 and" +" " + maxValue + ", you try to guess, want to play?")
-       
+        if (extendedRange > 1) {
+            maxValue = extendedRange
+        }
+        else {
+            maxValue = 100
+        }
+        let minValue = 1
+        let question = await ask("Let's play a game, where I think of a number between 1 and" + " " + maxValue + ", you try to guess, want to play?")
+// 
         while (question === 'no') {
-        question = await ask ("Ok then, will be here if you change your mind.")
+            question = await ask("Ok then, will be here if you change your mind.")
         }
-    
-    let firstCounter=0
-    var firstArray=[]
-    if (question === 'yes' || question=== 'yea') {
-          
-        let first = await ask('What is your guess?')
-            if (first < secretNumber) {
-            minValue = guess
-            }
-            
-        else if (first > secretNumber) {
-            maxValue = first
-            
-            }
-        
-            firstArray.push(first) 
-        
-            if (firstArray===first)
-            console.log('same guess')
-        
-    console.log('Hmmm...' + first + " " + "you say.")
-        
-        
-        firstCounter++
-            if (firstCounter>=7) {
-            console.log("You've reached the max number of guesses.")
-            process.exit()
-             }
-            
-             else if (first === secretNumber) {
-            response=await ask ("You've won!")
-            process.exit()
-            }
-        }    
-        }
-        
 
+        let firstCounter = 0
+        let firstArray = []
+        if (question === 'yes' || question === 'yea') {
+
+            let first = await ask('What is your guess?')
+            if (first < secretNumber) {
+                minValue = guess
+            }
+            if (first > secretNumber) {
+                maxValue = first
+            }
+
+            firstArray.push(first)
+
+            if (firstArray === first)
+                console.log('same guess')
+            console.log('Hmmm...' + first + " " + "you say.")
+
+            firstCounter++
+            if (firstCounter >= 7) {
+                console.log("You've reached the max number of guesses.")
+                process.exit()
+            }
+            if (first === secretNumber) {
+                response = await ask("You've won!")
+                process.exit()
+            }
+        }
+
+
+    }
+}
 start()
 //process exit on the no dont want to play

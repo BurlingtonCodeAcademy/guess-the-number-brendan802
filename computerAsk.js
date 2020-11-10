@@ -59,16 +59,22 @@ async function computerAsk() {
     guess = parseInt(guess);
     //track guess in counter
     firstCounter++;
+      if (guess>computerNum) {
+        console.log("No that's too high, try lower.")
+      }
+      else {
+        console.log("Nope that's too low, try higher.")
+      };
     //if guess is not the computer num
     while (guess !== computerNum) {
-      let nextGuess = await ask(" Next guess?");
-      nextGuess = parseInt(nextGuess);
+      let guess = await ask("Next guess?");
+      guess = parseInt(guess);
       //if guess is lower, then tell playerto try a higher number
-      if (nextGuess < computerNum) {
+      if (guess < computerNum) {
         firstCounter++;
         console.log(" Nope that's too low, try a higher number.");
       }//if guess too high, tell player to try a higher number
-      if (nextGuess > computerNum) {
+      if (guess > computerNum) {
         firstCounter++;
         console.log("Nope! Too high, try a lower number");
       }//if player guesses 9 times, game over
@@ -78,7 +84,7 @@ async function computerAsk() {
         );20
         process.exit();
       } //if player guesses computer number, they win
-      else if (computerNum == nextGuess) {
+      else if (computerNum == guess) {
         console.log("You got it! Great game!");
         process.exit();
       }
